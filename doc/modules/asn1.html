@@ -1,0 +1,1624 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>lua-openssl Documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>lua-openssl</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="asn1.html#Functions">Functions</a></li>
+<li><a href="asn1.html#Class_asn1_object">Class asn1_object </a></li>
+<li><a href="asn1.html#Class_asn1_integer">Class asn1_integer </a></li>
+<li><a href="asn1.html#Class_asn1_string">Class asn1_string </a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><strong>asn1</strong></li>
+  <li><a href="bio.html">bio</a></li>
+  <li><a href="callback.html">callback</a></li>
+  <li><a href="cipher.html">cipher</a></li>
+  <li><a href="cms.html">cms</a></li>
+  <li><a href="compat.html">compat</a></li>
+  <li><a href="x509.crl.html">x509.crl</a></li>
+  <li><a href="x509.req.html">x509.req</a></li>
+  <li><a href="dh.html">dh</a></li>
+  <li><a href="digest.html">digest</a></li>
+  <li><a href="dsa.html">dsa</a></li>
+  <li><a href="ec.html">ec</a></li>
+  <li><a href="engine.html">engine</a></li>
+  <li><a href="ec.group.html">ec.group</a></li>
+  <li><a href="hmac.html">hmac</a></li>
+  <li><a href="kdf.html">kdf</a></li>
+  <li><a href="bn.html">bn</a></li>
+  <li><a href="lhash.html">lhash</a></li>
+  <li><a href="mac.html">mac</a></li>
+  <li><a href="misc.html">misc</a></li>
+  <li><a href="ocsp.html">ocsp</a></li>
+  <li><a href="openssl.html">openssl</a></li>
+  <li><a href="ts.html">ts</a></li>
+  <li><a href="param.html">param</a></li>
+  <li><a href="pkcs12.html">pkcs12</a></li>
+  <li><a href="pkcs7.html">pkcs7</a></li>
+  <li><a href="pkey.html">pkey</a></li>
+  <li><a href="ec.point.html">ec.point</a></li>
+  <li><a href="rsa.html">rsa</a></li>
+  <li><a href="srp.html">srp</a></li>
+  <li><a href="ssl.html">ssl</a></li>
+  <li><a href="th-lock.html">th-lock</a></li>
+  <li><a href="util.html">util</a></li>
+  <li><a href="x509.html">x509</a></li>
+  <li><a href="x509.algor.html">x509.algor</a></li>
+  <li><a href="x509.attribute.html">x509.attribute</a></li>
+  <li><a href="x509.extension.html">x509.extension</a></li>
+  <li><a href="x509.name.html">x509.name</a></li>
+  <li><a href="x509.store.html">x509.store</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>asn1</code></h1>
+<p>asn1 module to generate or parse ASN.1 data.</p>
+<p>Provide asn1_object, asn1_string, asn1_object as lua object.</p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">asn1 = require(&apos;openssl&apos;).asn1
+</pre>
+    </ul>
+
+
+<h2><a href="asn1.html#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#new_type">new_type (value)</a></td>
+	<td class="summary">create asn1_type object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#get_object">get_object (der[, start=1[, stop=-i]])</a></td>
+	<td class="summary">parse der encoded string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#put_object">put_object (tag, class[, length=nil[, constructed=nil]])</a></td>
+	<td class="summary">do der encode and return encoded string partly head or full</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#tostring">tostring (clsortag, range)</a></td>
+	<td class="summary">make tag, class number to string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#new_string">new_string (data[, type])</a></td>
+	<td class="summary">create asn1_string object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#new_integer">new_integer (value)</a></td>
+	<td class="summary">create asn1_integer object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#new_generalizedtime">new_generalizedtime (time)</a></td>
+	<td class="summary">create asn1_time object using generalized time format</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#new_utctime">new_utctime (time)</a></td>
+	<td class="summary">create asn1_time object using UTC time format</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#txt2nid">txt2nid (txt)</a></td>
+	<td class="summary">get nid for txt, which can be short name, long name, or numerical oid</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#new_object">new_object (name_or_oid[, no_name=false])</a></td>
+	<td class="summary">create asn1_object from string identifier</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#new_object">new_object (nid)</a></td>
+	<td class="summary">create asn1_object from NID</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#new_object">new_object (options)</a></td>
+	<td class="summary">create asn1_object from table definition</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1type_di2">asn1type_di2 (der)</a></td>
+	<td class="summary">convert der encoded asn1type string to object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#type">type ()</a></td>
+	<td class="summary">get the ASN.1 type tag number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#octet">octet ([data])</a></td>
+	<td class="summary">get or set octet string data for asn1_type object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#cmp">cmp (other)</a></td>
+	<td class="summary">compare two asn1_type objects</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1string">asn1string ()</a></td>
+	<td class="summary">convert asn1_type to asn1_string object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#i2d">i2d ()</a></td>
+	<td class="summary">serialize asn1_type object to DER encoded string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#info">info ()</a></td>
+	<td class="summary">get detailed information about asn1_type object</td>
+	</tr>
+</table>
+<h2><a href="asn1.html#Class_asn1_object">Class asn1_object </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_object:nid">asn1_object:nid ()</a></td>
+	<td class="summary">get nid of asn1_object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_object:name">asn1_object:name ()</a></td>
+	<td class="summary">get name of asn1_object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_object:ln">asn1_object:ln ()</a></td>
+	<td class="summary">get long name of asn1_object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_object:sn">asn1_object:sn ()</a></td>
+	<td class="summary">get short name of asn1_object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_object:txt">asn1_object:txt ([no_name])</a></td>
+	<td class="summary">get text of asn1_object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_object:equals">asn1_object:equals (another)</a></td>
+	<td class="summary">compare two asn1_objects, if equals return true</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_object:data">asn1_object:data ()</a></td>
+	<td class="summary">get data of asn1_object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_object:dup">asn1_object:dup ()</a></td>
+	<td class="summary">make a clone of asn1_object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_object:d2i">asn1_object:d2i ()</a></td>
+	<td class="summary">read der in to asn1_object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_object:i2d">asn1_object:i2d ()</a></td>
+	<td class="summary">get der encoded of asn1_object</td>
+	</tr>
+</table>
+<h2><a href="asn1.html#Class_asn1_integer">Class asn1_integer </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_integer:bn">asn1_integer:bn ([number])</a></td>
+	<td class="summary">convert ASN1 integer to/from big number</td>
+	</tr>
+</table>
+<h2><a href="asn1.html#Class_asn1_string">Class asn1_string </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:set">asn1_string:set (value)</a></td>
+	<td class="summary">set value of ASN1 object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:get">asn1_string:get ()</a></td>
+	<td class="summary">get value from ASN1 object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:i2d">asn1_string:i2d ()</a></td>
+	<td class="summary">encode ASN1 object to DER format</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:d2i">asn1_string:d2i (der)</a></td>
+	<td class="summary">decode DER encoded string to ASN1 object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:type">asn1_string:type ()</a></td>
+	<td class="summary">get type of asn1_string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:length">asn1_string:length ()</a></td>
+	<td class="summary">get length two asn1_string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:data">asn1_string:data ()</a></td>
+	<td class="summary">get data of asn1_string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:data">asn1_string:data (data)</a></td>
+	<td class="summary">set data of asn1_string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:equals">asn1_string:equals (another)</a></td>
+	<td class="summary">compare two asn1_string, if equals return true</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:__eq">asn1_string:__eq (other)</a></td>
+	<td class="summary">compare two ASN1 string objects for equality</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:__tostring">asn1_string:__tostring ()</a></td>
+	<td class="summary">convert asn1_string to lua string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:toprint">asn1_string:toprint ()</a></td>
+	<td class="summary">get data as printable encode string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:toutf8">asn1_string:toutf8 ()</a></td>
+	<td class="summary">get data as utf8 encode string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:dup">asn1_string:dup ()</a></td>
+	<td class="summary">duplicate a new asn1_string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:check">asn1_string:check ()</a></td>
+	<td class="summary">check if asn1_time object is valid</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:adj">asn1_string:adj (time[, offset_day=0[, offset_sec=0]])</a></td>
+	<td class="summary">adjust asn1_time by specified offset</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="asn1.html#asn1_string:diff">asn1_string:diff (to)</a></td>
+	<td class="summary">calculate difference between two asn1_time objects</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_type"></a>
+    <strong>new_type (value)</strong>
+    </dt>
+    <dd>
+    create asn1_type object
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">boolean</span>, <span class="type">number</span>, <a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">asn1_string</span></span>
+         value to create ASN1_TYPE from
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_type</span> or <span class="type">nil</span></span>
+        new ASN1_TYPE object or nil on error
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "get_object"></a>
+    <strong>get_object (der[, start=1[, stop=-i]])</strong>
+    </dt>
+    <dd>
+    parse der encoded string
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">der</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         string
+        </li>
+        <li><span class="parameter">start</span>
+            <span class="types"><span class="type">number</span></span>
+         offset to parse
+         (<em>default</em> 1)
+        </li>
+        <li><span class="parameter">stop</span>
+            <span class="types"><span class="type">number</span></span>
+         offset to parse
+ this like string.sub()
+         (<em>default</em> -i)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        tag</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        class</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        parsed data start offset</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        parsed data stop offset</li>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        true for constructed data</li>
+    </ol>
+     <h3>Or</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">nil</span></span>
+        for fail</li>
+        <li>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        error msg</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        inner error code</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "put_object"></a>
+    <strong>put_object (tag, class[, length=nil[, constructed=nil]])</strong>
+    </dt>
+    <dd>
+    do der encode and return encoded string partly head or full
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+        </li>
+        <li><span class="parameter">class</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+        </li>
+        <li><span class="parameter">length</span>
+            <span class="types"><span class="type">number</span> or <a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         or date to encode, defualt will make
+indefinite length constructed
+         (<em>default</em> nil)
+        </li>
+        <li><span class="parameter">constructed</span>
+            <span class="types"><span class="type">boolean</span></span>
+         or not
+         (<em>default</em> nil)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        der encoded string or head when not give data
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tostring"></a>
+    <strong>tostring (clsortag, range)</strong>
+    </dt>
+    <dd>
+    make tag, class number to string
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">clsortag</span>
+            <span class="types"><span class="type">number</span></span>
+         which to string
+        </li>
+        <li><span class="parameter">range</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         only accept &lsquo;class&rsquo; or &lsquo;tag&rsquo;
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        result
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "new_string"></a>
+    <strong>new_string (data[, type])</strong>
+    </dt>
+    <dd>
+    create asn1_string object <br/><p> asn1_string object support types:   &ldquo;integer&rdquo;, &ldquo;enumerated&rdquo;, &ldquo;bit&rdquo;,
+&ldquo;octet&rdquo;, &ldquo;utf8&rdquo;, &ldquo;numeric&rdquo;, &ldquo;printable&rdquo;, &ldquo;t61&rdquo;, &ldquo;teletex&rdquo;, &ldquo;videotex&rdquo;, &ldquo;ia5&rdquo;,
+&ldquo;graphics&rdquo;, &ldquo;iso64&rdquo;, &ldquo;visible&rdquo;, &ldquo;general&rdquo;, &ldquo;unversal&rdquo;, &ldquo;bmp&rdquo;, &ldquo;utctime&rdquo; </p>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         to create new asn1_string
+        </li>
+        <li><span class="parameter">type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         asn1 string type, defult with &lsquo;utf8&rsquo;
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_string</span></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "new_integer"></a>
+    <strong>new_integer (value)</strong>
+    </dt>
+    <dd>
+    create asn1_integer object
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span> or <a class="type" href="asn1.html#asn1_integer:bn">bn</a></span>
+         integer value or bignum
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_integer</span></span>
+        new ASN1_INTEGER object
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="asn1.html#asn1_integer">asn1_integer</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "new_generalizedtime"></a>
+    <strong>new_generalizedtime (time)</strong>
+    </dt>
+    <dd>
+    create asn1_time object using generalized time format
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+            <span class="types"><span class="type">none</span>, <span class="type">number</span> or <a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_time</span></span>
+
+
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="asn1.html#asn1_string">asn1_string</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "new_utctime"></a>
+    <strong>new_utctime (time)</strong>
+    </dt>
+    <dd>
+    create asn1_time object using UTC time format
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+            <span class="types"><span class="type">none</span>, <span class="type">number</span> or <a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_time</span></span>
+
+
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="asn1.html#asn1_string">asn1_string</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "txt2nid"></a>
+    <strong>txt2nid (txt)</strong>
+    </dt>
+    <dd>
+    get nid for txt, which can be short name, long name, or numerical oid
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">txt</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         which get to nid
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">integer</span></span>
+        nid or nil on fail
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "new_object"></a>
+    <strong>new_object (name_or_oid[, no_name=false])</strong>
+    </dt>
+    <dd>
+    create asn1_object from string identifier
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name_or_oid</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         short name (e.g., &ldquo;C&rdquo;), long name (e.g., &ldquo;countryName&rdquo;), or OID string (e.g., &ldquo;2.5.4.6&rdquo;)
+        </li>
+        <li><span class="parameter">no_name</span>
+            <span class="types"><span class="type">boolean</span></span>
+         true for only oid string parsing, false to allow names
+         (<em>default</em> false)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_object</span> or <span class="type">nil</span></span>
+        ASN1_OBJECT mapping or nil on error
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="asn1.html#asn1_object">asn1_object</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> obj1 = asn1.<span class="function-name">new_object</span>(<span class="string">"C"</span>)           <span class="comment">-- short name
+</span><span class="keyword">local</span> obj2 = asn1.<span class="function-name">new_object</span>(<span class="string">"countryName"</span>) <span class="comment">-- long name
+</span><span class="keyword">local</span> obj3 = asn1.<span class="function-name">new_object</span>(<span class="string">"2.5.4.6"</span>)     <span class="comment">-- OID string</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "new_object"></a>
+    <strong>new_object (nid)</strong>
+    </dt>
+    <dd>
+    create asn1_object from NID
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">nid</span>
+            <span class="types"><span class="type">integer</span></span>
+         numeric identifier for the ASN1_OBJECT
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_object</span> or <span class="type">nil</span></span>
+        ASN1_OBJECT mapping or nil on error
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="asn1.html#asn1_object">asn1_object</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> obj = asn1.<span class="function-name">new_object</span>(<span class="number">14</span>)  <span class="comment">-- NID for countryName</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "new_object"></a>
+    <strong>new_object (options)</strong>
+    </dt>
+    <dd>
+    create asn1_object from table definition
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">options</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         table with sn (short name), ln (long name), oid keys to create new asn1_object
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_object</span> or <span class="type">nil</span></span>
+        ASN1_OBJECT mapping or nil on error
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="asn1.html#asn1_object">asn1_object</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> obj = asn1.<span class="function-name">new_object</span>({
+  oid = <span class="string">"1.2.3.4.5.6"</span>,
+  sn = <span class="string">"myShortName"</span>,
+  ln = <span class="string">"myLongName"</span>
+})</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "asn1type_di2"></a>
+    <strong>asn1type_di2 (der)</strong>
+    </dt>
+    <dd>
+    convert der encoded asn1type string to object
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">der</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1type</span></span>
+        object for success, and nil for fail
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "type"></a>
+    <strong>type ()</strong>
+    </dt>
+    <dd>
+    get the ASN.1 type tag number
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        the ASN.1 type tag number
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "octet"></a>
+    <strong>octet ([data])</strong>
+    </dt>
+    <dd>
+    get or set octet string data for asn1_type object
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         optional octet string data to set
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        current octet string data when called without parameters</li>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        true when setting data successfully</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "cmp"></a>
+    <strong>cmp (other)</strong>
+    </dt>
+    <dd>
+    compare two asn1_type objects
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">other</span>
+            <span class="types"><span class="type">asn1_type</span></span>
+         another asn1_type object to compare with
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        true if both asn1_type objects are equal, false otherwise
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1string"></a>
+    <strong>asn1string ()</strong>
+    </dt>
+    <dd>
+    convert asn1_type to asn1_string object
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_string</span> or <span class="type">nil</span></span>
+        asn1_string object or nil if conversion is not supported
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "i2d"></a>
+    <strong>i2d ()</strong>
+    </dt>
+    <dd>
+    serialize asn1_type object to DER encoded string
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        DER encoded representation of the asn1_type object
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "info"></a>
+    <strong>info ()</strong>
+    </dt>
+    <dd>
+    get detailed information about asn1_type object
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        containing type information and data
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_asn1_object"></a>Class asn1_object </h2>
+
+          <div class="section-description">
+          openssl.asn1_object object
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "asn1_object:nid"></a>
+    <strong>asn1_object:nid ()</strong>
+    </dt>
+    <dd>
+    get nid of asn1_object.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">integer</span></span>
+        nid of asn1_object
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_object:name"></a>
+    <strong>asn1_object:name ()</strong>
+    </dt>
+    <dd>
+    get name of asn1_object.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        short name and followed by long name of asn1_object
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_object:ln"></a>
+    <strong>asn1_object:ln ()</strong>
+    </dt>
+    <dd>
+    get long name of asn1_object.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        long name of asn1_object
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_object:sn"></a>
+    <strong>asn1_object:sn ()</strong>
+    </dt>
+    <dd>
+    get short name of asn1_object.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        short name of asn1_object
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_object:txt"></a>
+    <strong>asn1_object:txt ([no_name])</strong>
+    </dt>
+    <dd>
+    get text of asn1_object.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">no_name</span>
+            <span class="types"><span class="type">boolean</span></span>
+         true for only oid or name, default with false
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        long or short name, even oid of asn1_object
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_object:equals"></a>
+    <strong>asn1_object:equals (another)</strong>
+    </dt>
+    <dd>
+    compare two asn1_objects, if equals return true
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">another</span>
+            <span class="types"><span class="type">asn1_object</span></span>
+         to compre
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        true if equals
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_object:data"></a>
+    <strong>asn1_object:data ()</strong>
+    </dt>
+    <dd>
+    get data of asn1_object
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        asn1_object data
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_object:dup"></a>
+    <strong>asn1_object:dup ()</strong>
+    </dt>
+    <dd>
+    make a clone of asn1_object
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_object</span></span>
+        clone for self
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_object:d2i"></a>
+    <strong>asn1_object:d2i ()</strong>
+    </dt>
+    <dd>
+    read der in to asn1_object
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_object:i2d"></a>
+    <strong>asn1_object:i2d ()</strong>
+    </dt>
+    <dd>
+    get der encoded of asn1_object
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_asn1_integer"></a>Class asn1_integer </h2>
+
+          <div class="section-description">
+          openssl.asn1_integer object
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "asn1_integer:bn"></a>
+    <strong>asn1_integer:bn ([number])</strong>
+    </dt>
+    <dd>
+    convert ASN1 integer to/from big number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><a class="type" href="asn1.html#asn1_integer:bn">bn</a></span>
+         big number to set, or nil to get current value
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="asn1.html#asn1_integer:bn">bn</a></span>
+        big number representation if getting, or previous value if setting
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_asn1_string"></a>Class asn1_string </h2>
+
+          <div class="section-description">
+          openssl.asn1_string object
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "asn1_string:set"></a>
+    <strong>asn1_string:set (value)</strong>
+    </dt>
+    <dd>
+    set value of ASN1 object
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span> or <a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         value to set (number for integers/times, string for time strings)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        result true for success
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:get"></a>
+    <strong>asn1_string:get ()</strong>
+    </dt>
+    <dd>
+    get value from ASN1 object
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span> or <a class="type" href="asn1.html#asn1_integer:bn">bn</a></span>
+        value extracted from ASN1 object (bn for integers, number for times)
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:i2d"></a>
+    <strong>asn1_string:i2d ()</strong>
+    </dt>
+    <dd>
+    encode ASN1 object to DER format
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        DER encoded string
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:d2i"></a>
+    <strong>asn1_string:d2i (der)</strong>
+    </dt>
+    <dd>
+    decode DER encoded string to ASN1 object
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">der</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         DER encoded string
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">asn1group</span></span>
+        self on success</li>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        result false on failure</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:type"></a>
+    <strong>asn1_string:type ()</strong>
+    </dt>
+    <dd>
+    get type of asn1_string
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        type of asn1_string
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="asn1.html#new_string">new_string</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:length"></a>
+    <strong>asn1_string:length ()</strong>
+    </dt>
+    <dd>
+    get length two asn1_string
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">integer</span></span>
+        length of asn1_string
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> astr = asn1.<span class="function-name">new_string</span>(<span class="string">'ABCD'</span>)
+<span class="global">print</span>(<span class="string">'length:'</span>,#astr)
+<span class="global">print</span>(<span class="string">'length:'</span>,astr:<span class="function-name">length</span>())
+<span class="global">assert</span>(#astr==astr:length,<span class="string">"must equals"</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "asn1_string:data"></a>
+    <strong>asn1_string:data ()</strong>
+    </dt>
+    <dd>
+    get data of asn1_string
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        raw data of asn1_string
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:data"></a>
+    <strong>asn1_string:data (data)</strong>
+    </dt>
+    <dd>
+    set data of asn1_string
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         set to asn1_string
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        success if value set true, or follow by errmsg</li>
+        <li>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        fail error message</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:equals"></a>
+    <strong>asn1_string:equals (another)</strong>
+    </dt>
+    <dd>
+    compare two asn1_string, if equals return true
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">another</span>
+            <span class="types"><span class="type">asn1_string</span></span>
+         to compre
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        true if equals
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> obj = astr:<span class="function-name">dup</span>()
+<span class="global">assert</span>(obj==astr, <span class="string">"must equals"</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "asn1_string:__eq"></a>
+    <strong>asn1_string:__eq (other)</strong>
+    </dt>
+    <dd>
+    compare two ASN1 string objects for equality
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">other</span>
+            <span class="types"><span class="type">asn1_string</span></span>
+         ASN1 string object to compare with
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        true if objects are equal
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:__tostring"></a>
+    <strong>asn1_string:__tostring ()</strong>
+    </dt>
+    <dd>
+    convert asn1_string to lua string
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        result format match with type:data
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:toprint"></a>
+    <strong>asn1_string:toprint ()</strong>
+    </dt>
+    <dd>
+    get data as printable encode string
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        printable encoded string
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:toutf8"></a>
+    <strong>asn1_string:toutf8 ()</strong>
+    </dt>
+    <dd>
+    get data as utf8 encode string
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        utf8 encoded string
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:dup"></a>
+    <strong>asn1_string:dup ()</strong>
+    </dt>
+    <dd>
+    duplicate a new asn1_string
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_string</span></span>
+        clone for self
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:check"></a>
+    <strong>asn1_string:check ()</strong>
+    </dt>
+    <dd>
+    check if asn1_time object is valid
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        true if asn1_time is valid, false otherwise
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:adj"></a>
+    <strong>asn1_string:adj (time[, offset_day=0[, offset_sec=0]])</strong>
+    </dt>
+    <dd>
+    adjust asn1_time by specified offset
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+            <span class="types"><span class="type">number</span></span>
+         base time as Unix timestamp
+        </li>
+        <li><span class="parameter">offset_day</span>
+            <span class="types"><span class="type">number</span></span>
+         offset in days
+         (<em>default</em> 0)
+        </li>
+        <li><span class="parameter">offset_sec</span>
+            <span class="types"><span class="type">number</span></span>
+         offset in seconds
+         (<em>default</em> 0)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">asn1_time</span></span>
+        adjusted asn1_time object (self)
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "asn1_string:diff"></a>
+    <strong>asn1_string:diff (to)</strong>
+    </dt>
+    <dd>
+    calculate difference between two asn1_time objects
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">to</span>
+            <span class="types"><span class="type">asn1_time</span></span>
+         target time to compare with
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        difference in days</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        difference in seconds</li>
+    </ol>
+     <h3>Or</h3>
+    <ol>
+
+           <span class="types"><span class="type">nil</span></span>
+        when comparison fails
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2025-11-05 20:38:13 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

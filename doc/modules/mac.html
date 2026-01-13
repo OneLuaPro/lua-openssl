@@ -1,0 +1,526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>lua-openssl Documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>lua-openssl</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="mac.html#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="asn1.html">asn1</a></li>
+  <li><a href="bio.html">bio</a></li>
+  <li><a href="callback.html">callback</a></li>
+  <li><a href="cipher.html">cipher</a></li>
+  <li><a href="cms.html">cms</a></li>
+  <li><a href="compat.html">compat</a></li>
+  <li><a href="x509.crl.html">x509.crl</a></li>
+  <li><a href="x509.req.html">x509.req</a></li>
+  <li><a href="dh.html">dh</a></li>
+  <li><a href="digest.html">digest</a></li>
+  <li><a href="dsa.html">dsa</a></li>
+  <li><a href="ec.html">ec</a></li>
+  <li><a href="engine.html">engine</a></li>
+  <li><a href="ec.group.html">ec.group</a></li>
+  <li><a href="hmac.html">hmac</a></li>
+  <li><a href="kdf.html">kdf</a></li>
+  <li><a href="bn.html">bn</a></li>
+  <li><a href="lhash.html">lhash</a></li>
+  <li><strong>mac</strong></li>
+  <li><a href="misc.html">misc</a></li>
+  <li><a href="ocsp.html">ocsp</a></li>
+  <li><a href="openssl.html">openssl</a></li>
+  <li><a href="ts.html">ts</a></li>
+  <li><a href="param.html">param</a></li>
+  <li><a href="pkcs12.html">pkcs12</a></li>
+  <li><a href="pkcs7.html">pkcs7</a></li>
+  <li><a href="pkey.html">pkey</a></li>
+  <li><a href="ec.point.html">ec.point</a></li>
+  <li><a href="rsa.html">rsa</a></li>
+  <li><a href="srp.html">srp</a></li>
+  <li><a href="ssl.html">ssl</a></li>
+  <li><a href="th-lock.html">th-lock</a></li>
+  <li><a href="util.html">util</a></li>
+  <li><a href="x509.html">x509</a></li>
+  <li><a href="x509.algor.html">x509.algor</a></li>
+  <li><a href="x509.attribute.html">x509.attribute</a></li>
+  <li><a href="x509.extension.html">x509.extension</a></li>
+  <li><a href="x509.name.html">x509.name</a></li>
+  <li><a href="x509.store.html">x509.store</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>mac</code></h1>
+<p>mac module perform Message Authentication Code operations.</p>
+<p>It base on EVP_MAC in OpenSSL v3.</p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">mac = require(&apos;openssl&apos;).mac
+</pre>
+    </ul>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Author</strong>: george zhao &lt;zhaozg(at)gmail.com></li>
+    </ul>
+
+
+<h2><a href="mac.html#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="mac.html#new">new (algorithm[, properties])</a></td>
+	<td class="summary">create new MAC object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#is_a">is_a (name)</a></td>
+	<td class="summary">check if MAC algorithm supports a specific name</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#names">names ()</a></td>
+	<td class="summary">get all names supported by this MAC algorithm</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#provider">provider ()</a></td>
+	<td class="summary">get provider name for this MAC algorithm</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#dup">dup ()</a></td>
+	<td class="summary">duplicate MAC context</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#mac">mac ()</a></td>
+	<td class="summary">get MAC object from MAC context</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#params">params ()</a></td>
+	<td class="summary">get or set MAC context parameters (not yet implemented)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#new">new (alg, key[, engine])</a></td>
+	<td class="summary">get mac_ctx object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#free">free ()</a></td>
+	<td class="summary">free MAC context resources</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#mac">mac (digest, message, key[, raw=false])</a></td>
+	<td class="summary">compute mac one step, in module openssl.mac</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#update">update (msg)</a></td>
+	<td class="summary">feed data to do digest</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#final">final ([last[, raw]])</a></td>
+	<td class="summary">get result of mac</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="mac.html#size">size (msg)</a></td>
+	<td class="summary">return size of mac value</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new (algorithm[, properties])</strong>
+    </dt>
+    <dd>
+    create new MAC object
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">algorithm</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         MAC algorithm name (e.g., &ldquo;HMAC&rdquo;, &ldquo;CMAC&rdquo;, &ldquo;GMAC&rdquo;)
+        </li>
+        <li><span class="parameter">properties</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         optional properties string
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="mac.html#mac">mac</a> or <span class="type">nil</span></span>
+        new MAC object or nil on failure
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_a"></a>
+    <strong>is_a (name)</strong>
+    </dt>
+    <dd>
+    check if MAC algorithm supports a specific name
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         algorithm name to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        true if MAC supports the given name
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "names"></a>
+    <strong>names ()</strong>
+    </dt>
+    <dd>
+    get all names supported by this MAC algorithm
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        array of supported algorithm names
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "provider"></a>
+    <strong>provider ()</strong>
+    </dt>
+    <dd>
+    get provider name for this MAC algorithm
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        name of the provider implementing this MAC
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "dup"></a>
+    <strong>dup ()</strong>
+    </dt>
+    <dd>
+    duplicate MAC context
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="mac.html#mac">mac_ctx</a></span>
+        duplicated MAC context
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mac"></a>
+    <strong>mac ()</strong>
+    </dt>
+    <dd>
+    get MAC object from MAC context
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="mac.html#mac">mac</a></span>
+        the MAC object associated with this context
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "params"></a>
+    <strong>params ()</strong>
+    </dt>
+    <dd>
+    get or set MAC context parameters (not yet implemented)
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">nil</span></span>
+        always returns nil (NYI &ndash; Not Yet Implemented)</li>
+        <li>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        error message &ldquo;NYI&rdquo;</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "new"></a>
+    <strong>new (alg, key[, engine])</strong>
+    </dt>
+    <dd>
+    get mac_ctx object
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">alg</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a>, <span class="type">integer</span> or <span class="type">asn1_object</span></span>
+         name, nid or object identity
+        </li>
+        <li><span class="parameter">key</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         secret key
+        </li>
+        <li><span class="parameter">engine</span>
+            <span class="types"><span class="type">engine</span></span>
+        , nothing with default engine
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="mac.html#mac">mac_ctx</a></span>
+        object mapping MAC_CTX in openssl
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "free"></a>
+    <strong>free ()</strong>
+    </dt>
+    <dd>
+    free MAC context resources
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        always returns 0
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mac"></a>
+    <strong>mac (digest, message, key[, raw=false])</strong>
+    </dt>
+    <dd>
+    compute mac one step, in module openssl.mac
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">digest</span>
+            <span class="types"><span class="type">evp_digest</span>, <a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">nid</span></span>
+         digest alg identity
+        </li>
+        <li><span class="parameter">message</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+        </li>
+        <li><span class="parameter">key</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+        </li>
+        <li><span class="parameter">raw</span>
+            <span class="types"><span class="type">boolean</span></span>
+         binary or hex encoded result, default false for hex result
+         (<em>default</em> false)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        result binary string when raw is true, hex string otherwise
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "update"></a>
+    <strong>update (msg)</strong>
+    </dt>
+    <dd>
+    feed data to do digest
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">msg</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         data
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        result true for success
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "final"></a>
+    <strong>final ([last[, raw]])</strong>
+    </dt>
+    <dd>
+    get result of mac
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">last</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         last part of data
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">raw</span>
+            <span class="types"><span class="type">boolean</span></span>
+         binary or hex encoded result, default true for binary result
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        val hash result
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "size"></a>
+    <strong>size (msg)</strong>
+    </dt>
+    <dd>
+    return size of mac value
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">msg</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         data
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        size of MAC value in bytes
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2025-11-05 20:38:13 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

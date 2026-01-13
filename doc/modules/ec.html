@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>lua-openssl Documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>lua-openssl</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="ec.html#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="asn1.html">asn1</a></li>
+  <li><a href="bio.html">bio</a></li>
+  <li><a href="callback.html">callback</a></li>
+  <li><a href="cipher.html">cipher</a></li>
+  <li><a href="cms.html">cms</a></li>
+  <li><a href="compat.html">compat</a></li>
+  <li><a href="x509.crl.html">x509.crl</a></li>
+  <li><a href="x509.req.html">x509.req</a></li>
+  <li><a href="dh.html">dh</a></li>
+  <li><a href="digest.html">digest</a></li>
+  <li><a href="dsa.html">dsa</a></li>
+  <li><strong>ec</strong></li>
+  <li><a href="engine.html">engine</a></li>
+  <li><a href="ec.group.html">ec.group</a></li>
+  <li><a href="hmac.html">hmac</a></li>
+  <li><a href="kdf.html">kdf</a></li>
+  <li><a href="bn.html">bn</a></li>
+  <li><a href="lhash.html">lhash</a></li>
+  <li><a href="mac.html">mac</a></li>
+  <li><a href="misc.html">misc</a></li>
+  <li><a href="ocsp.html">ocsp</a></li>
+  <li><a href="openssl.html">openssl</a></li>
+  <li><a href="ts.html">ts</a></li>
+  <li><a href="param.html">param</a></li>
+  <li><a href="pkcs12.html">pkcs12</a></li>
+  <li><a href="pkcs7.html">pkcs7</a></li>
+  <li><a href="pkey.html">pkey</a></li>
+  <li><a href="ec.point.html">ec.point</a></li>
+  <li><a href="rsa.html">rsa</a></li>
+  <li><a href="srp.html">srp</a></li>
+  <li><a href="ssl.html">ssl</a></li>
+  <li><a href="th-lock.html">th-lock</a></li>
+  <li><a href="util.html">util</a></li>
+  <li><a href="x509.html">x509</a></li>
+  <li><a href="x509.algor.html">x509.algor</a></li>
+  <li><a href="x509.attribute.html">x509.attribute</a></li>
+  <li><a href="x509.extension.html">x509.extension</a></li>
+  <li><a href="x509.name.html">x509.name</a></li>
+  <li><a href="x509.store.html">x509.store</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>ec</code></h1>
+<p>ec module to create EC keys and do EC key processes.</p>
+<p>
+</p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ec = require(&apos;openssl&apos;).ec
+</pre>
+    </ul>
+
+
+<h2><a href="ec.html#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="ec.html#sign">sign (eckey, digest, md)</a></td>
+	<td class="summary">do EC sign</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#verify">verify (eckey, digest, signature, md)</a></td>
+	<td class="summary">do EC verify, input msg is digest result</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#parse">parse ([basic=false])</a></td>
+	<td class="summary">parse EC key components and parameters</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#compute_key">compute_key (peer[, kdf])</a></td>
+	<td class="summary">compute ECDH shared key</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#set_method">set_method (engine)</a></td>
+	<td class="summary">set ECDSA signing method for EC key</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#check">check ()</a></td>
+	<td class="summary">check if EC key is valid</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#export">export ()</a></td>
+	<td class="summary">export EC key to DER format</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#group">group ([group])</a></td>
+	<td class="summary">get or set EC group for EC key</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#read">read (der)</a></td>
+	<td class="summary">read EC key from DER encoded data</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#conv_form">conv_form ([form])</a></td>
+	<td class="summary">get or set point conversion form for EC key</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#enc_flags">enc_flags ([flags])</a></td>
+	<td class="summary">get or set encoding flags for EC key</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.html#list">list ()</a></td>
+	<td class="summary">list all available elliptic curve names</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "sign"></a>
+    <strong>sign (eckey, digest, md)</strong>
+    </dt>
+    <dd>
+    do EC sign
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eckey</span>
+            <span class="types"><span class="type">ec_key</span></span>
+
+
+        </li>
+        <li><span class="parameter">digest</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         result of digest to be signed
+        </li>
+        <li><span class="parameter">md</span>
+            <span class="types"><span class="type">evp_md</span>, <a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">nid</span></span>
+         digest alg identity, default is sm3
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        signature
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "verify"></a>
+    <strong>verify (eckey, digest, signature, md)</strong>
+    </dt>
+    <dd>
+    do EC verify, input msg is digest result
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eckey</span>
+            <span class="types"><span class="type">ec_key</span></span>
+
+
+        </li>
+        <li><span class="parameter">digest</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         result of digest to be signed
+        </li>
+        <li><span class="parameter">signature</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+        </li>
+        <li><span class="parameter">md</span>
+            <span class="types"><span class="type">evp_md</span>, <a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">nid</span></span>
+         digest alg identity
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        true for verified, false for invalid signature</li>
+        <li>
+        nil for error, and followed by error message</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "parse"></a>
+    <strong>parse ([basic=false])</strong>
+    </dt>
+    <dd>
+    parse EC key components and parameters
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">basic</span>
+            <span class="types"><span class="type">boolean</span></span>
+         true for basic information only
+         (<em>default</em> false)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        EC key information including encoding flags, conversion form, group, and key components
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "compute_key"></a>
+    <strong>compute_key (peer[, kdf])</strong>
+    </dt>
+    <dd>
+    compute ECDH shared key
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">peer</span>
+            <span class="types"><span class="type">ec_key</span></span>
+         peer EC key for key exchange
+        </li>
+        <li><span class="parameter">kdf</span>
+            <span class="types"><span class="type">function</span></span>
+         key derivation function
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        shared secret or nil if failed
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "set_method"></a>
+    <strong>set_method (engine)</strong>
+    </dt>
+    <dd>
+    set ECDSA signing method for EC key
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">engine</span>
+            <span class="types"><span class="type">engine</span></span>
+         engine providing the ECDSA method
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        result true for success
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "check"></a>
+    <strong>check ()</strong>
+    </dt>
+    <dd>
+    check if EC key is valid
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        true if key is valid, false otherwise
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "export"></a>
+    <strong>export ()</strong>
+    </dt>
+    <dd>
+    export EC key to DER format
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        DER encoded EC private key
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "group"></a>
+    <strong>group ([group])</strong>
+    </dt>
+    <dd>
+    get or set EC group for EC key
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">group</span>
+            <span class="types"><span class="type">ec_group</span></span>
+         optional EC group to set
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">ec_group</span></span>
+        current EC group when called without parameters</li>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        true when setting group successfully</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "read"></a>
+    <strong>read (der)</strong>
+    </dt>
+    <dd>
+    read EC key from DER encoded data
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">der</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         DER encoded EC private key data
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ec_key</span> or <span class="type">nil</span></span>
+        parsed EC key or nil on failure
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "conv_form"></a>
+    <strong>conv_form ([form])</strong>
+    </dt>
+    <dd>
+    get or set point conversion form for EC key
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">form</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">number</span></span>
+         point conversion form to set
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        point conversion form name if getting</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        point conversion form value if getting</li>
+    </ol>
+     <h3>Or</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        result true for success if setting
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "enc_flags"></a>
+    <strong>enc_flags ([flags])</strong>
+    </dt>
+    <dd>
+    get or set encoding flags for EC key
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flags</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">number</span></span>
+         encoding flags to set
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        encoding flags name if getting</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        encoding flags value if getting</li>
+    </ol>
+     <h3>Or</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        result true for success if setting
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "list"></a>
+    <strong>list ()</strong>
+    </dt>
+    <dd>
+    list all available elliptic curve names
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        array of curve names and descriptions
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2025-11-05 20:38:13 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

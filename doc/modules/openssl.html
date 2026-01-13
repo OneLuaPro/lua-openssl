@@ -1,0 +1,621 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>lua-openssl Documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>lua-openssl</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="openssl.html#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="asn1.html">asn1</a></li>
+  <li><a href="bio.html">bio</a></li>
+  <li><a href="callback.html">callback</a></li>
+  <li><a href="cipher.html">cipher</a></li>
+  <li><a href="cms.html">cms</a></li>
+  <li><a href="compat.html">compat</a></li>
+  <li><a href="x509.crl.html">x509.crl</a></li>
+  <li><a href="x509.req.html">x509.req</a></li>
+  <li><a href="dh.html">dh</a></li>
+  <li><a href="digest.html">digest</a></li>
+  <li><a href="dsa.html">dsa</a></li>
+  <li><a href="ec.html">ec</a></li>
+  <li><a href="engine.html">engine</a></li>
+  <li><a href="ec.group.html">ec.group</a></li>
+  <li><a href="hmac.html">hmac</a></li>
+  <li><a href="kdf.html">kdf</a></li>
+  <li><a href="bn.html">bn</a></li>
+  <li><a href="lhash.html">lhash</a></li>
+  <li><a href="mac.html">mac</a></li>
+  <li><a href="misc.html">misc</a></li>
+  <li><a href="ocsp.html">ocsp</a></li>
+  <li><strong>openssl</strong></li>
+  <li><a href="ts.html">ts</a></li>
+  <li><a href="param.html">param</a></li>
+  <li><a href="pkcs12.html">pkcs12</a></li>
+  <li><a href="pkcs7.html">pkcs7</a></li>
+  <li><a href="pkey.html">pkey</a></li>
+  <li><a href="ec.point.html">ec.point</a></li>
+  <li><a href="rsa.html">rsa</a></li>
+  <li><a href="srp.html">srp</a></li>
+  <li><a href="ssl.html">ssl</a></li>
+  <li><a href="th-lock.html">th-lock</a></li>
+  <li><a href="util.html">util</a></li>
+  <li><a href="x509.html">x509</a></li>
+  <li><a href="x509.algor.html">x509.algor</a></li>
+  <li><a href="x509.attribute.html">x509.attribute</a></li>
+  <li><a href="x509.extension.html">x509.extension</a></li>
+  <li><a href="x509.name.html">x509.name</a></li>
+  <li><a href="x509.store.html">x509.store</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>openssl</code></h1>
+<p>Openssl binding for Lua, provide openssl full function in lua.</p>
+<p>
+</p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">openssl = require(&apos;openssl&apos;)
+</pre>
+    </ul>
+
+
+<h2><a href="openssl.html#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#version">version ([format])</a></td>
+	<td class="summary">get lua-openssl version</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#hex">hex (str[, encode=true])</a></td>
+	<td class="summary">hex encode or decode string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#base64">base64 (input[, encode=true[, NO_NL=true]])</a></td>
+	<td class="summary">base64 encode or decode</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#list">list (type)</a></td>
+	<td class="summary">get method names</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#error">error ([error])</a></td>
+	<td class="summary">get last or given error infomation</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#clear_error">clear_error ()</a></td>
+	<td class="summary">Empties the current thread&rsquo;s error queue, helps reduce memory usage.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#errors">errors ()</a></td>
+	<td class="summary">Fetch all error strings from current thread&rsquo;s error queue, and empty the error queue.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#rand_add">rand_add (seed, entropy)</a></td>
+	<td class="summary">mixes the num bytes at buf into the PRNG state.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#rand_load">rand_load ([file=nil])</a></td>
+	<td class="summary">load rand seed from file</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#rand_write">rand_write ([file=nil])</a></td>
+	<td class="summary">save rand seed to file</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#rand_status">rand_status (result)</a></td>
+	<td class="summary">get random generator state</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#random">random (length)</a></td>
+	<td class="summary">get random bytes</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#FIPS_mode">FIPS_mode (fips)</a></td>
+	<td class="summary">set FIPS mode</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#FIPS_mode">FIPS_mode ()</a></td>
+	<td class="summary">get FIPS mode</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#mem_leaks">mem_leaks ()</a></td>
+	<td class="summary">get memory leak report</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="openssl.html#engine">engine (engine_id)</a></td>
+	<td class="summary">get openssl engine object</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "version"></a>
+    <strong>version ([format])</strong>
+    </dt>
+    <dd>
+    get lua-openssl version
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">format</span>
+            <span class="types"><span class="type">boolean</span></span>
+         result will be number when set true, or string
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">lua-openssl</span></span>
+        version, lua version, openssl version
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "hex"></a>
+    <strong>hex (str[, encode=true])</strong>
+    </dt>
+    <dd>
+    hex encode or decode string
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">str</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+        </li>
+        <li><span class="parameter">encode</span>
+            <span class="types"><span class="type">boolean</span></span>
+         true to encoed, false to decode
+         (<em>default</em> true)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "base64"></a>
+    <strong>base64 (input[, encode=true[, NO_NL=true]])</strong>
+    </dt>
+    <dd>
+    base64 encode or decode
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">input</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">bio</span></span>
+
+
+        </li>
+        <li><span class="parameter">encode</span>
+            <span class="types"><span class="type">boolean</span></span>
+         true to encoed, false to decode
+         (<em>default</em> true)
+        </li>
+        <li><span class="parameter">NO_NL</span>
+            <span class="types"><span class="type">boolean</span></span>
+         default true without newline, false with newline
+         (<em>default</em> true)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "list"></a>
+    <strong>list (type)</strong>
+    </dt>
+    <dd>
+    get method names
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         support &lsquo;cipher&rsquo;,&lsquo;digests&rsquo;,&lsquo;pkeys&rsquo;,&lsquo;comps&rsquo;
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        as array
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "error"></a>
+    <strong>error ([error])</strong>
+    </dt>
+    <dd>
+    get last or given error infomation Most lua-openssl function or methods return nil or false when error or
+failed, followed by string type error <em>reason</em> and number type error <em>code</em>,
+<em>code</em> can pass to openssl.error() to get more error information.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">error</span>
+            <span class="types"><span class="type">number</span></span>
+        , default use ERR_get_error() return value
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        reason</li>
+        <li>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        library name</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        errcode</li>
+        <li>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        function name if available</li>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        indicates whether a given error code is a fatal error</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "clear_error"></a>
+    <strong>clear_error ()</strong>
+    </dt>
+    <dd>
+    Empties the current thread&rsquo;s error queue, helps reduce memory usage.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "errors"></a>
+    <strong>errors ()</strong>
+    </dt>
+    <dd>
+    Fetch all error strings from current thread&rsquo;s error queue, and empty the error queue.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rand_add"></a>
+    <strong>rand_add (seed, entropy)</strong>
+    </dt>
+    <dd>
+    mixes the num bytes at buf into the PRNG state.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">seed</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         data to seed random generator
+        </li>
+        <li><span class="parameter">entropy</span>
+            <span class="types"><span class="type">number</span></span>
+         the lower bound of an estimate of how much randomness is contained in buf,
+measured in bytes.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rand_load"></a>
+    <strong>rand_load ([file=nil])</strong>
+    </dt>
+    <dd>
+    load rand seed from file
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">file</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         path to laod seed, default openssl management
+         (<em>default</em> nil)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        result
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rand_write"></a>
+    <strong>rand_write ([file=nil])</strong>
+    </dt>
+    <dd>
+    save rand seed to file
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">file</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         path to save seed, default openssl management
+         (<em>default</em> nil)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        result
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rand_status"></a>
+    <strong>rand_status (result)</strong>
+    </dt>
+    <dd>
+    get random generator state
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">result</span>
+            <span class="types"><span class="type">boolean</span></span>
+         true for sucess
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "random"></a>
+    <strong>random (length)</strong>
+    </dt>
+    <dd>
+    get random bytes
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">length</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "FIPS_mode"></a>
+    <strong>FIPS_mode (fips)</strong>
+    </dt>
+    <dd>
+    set FIPS mode
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fips</span>
+            <span class="types"><span class="type">boolean</span></span>
+         true enable FIPS mode, false disable it.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        success
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "FIPS_mode"></a>
+    <strong>FIPS_mode ()</strong>
+    </dt>
+    <dd>
+    get FIPS mode
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        return true when FIPS mode enabled, false when FIPS mode disabled.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mem_leaks"></a>
+    <strong>mem_leaks ()</strong>
+    </dt>
+    <dd>
+    get memory leak report
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        memory leak report from OpenSSL
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "engine"></a>
+    <strong>engine (engine_id)</strong>
+    </dt>
+    <dd>
+    get openssl engine object
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">engine_id</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="openssl.html#engine">engine</a></span>
+
+
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2025-11-05 20:38:13 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

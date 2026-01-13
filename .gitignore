@@ -24,6 +24,7 @@
 
 #MSVC
 msvc/
+*.*~
 
 #ldoc
 doc
@@ -48,3 +49,4 @@ _codeql_detected_source_root
 
 #build directory
 build/
+build64/

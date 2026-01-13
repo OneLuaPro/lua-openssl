@@ -36,6 +36,17 @@ pkey module to create and process public or private key, do asymmetric key opera
 #include <openssl/param_build.h>
 #endif
 
+/* LibreSSL does not have OPENSSL_clear_free() */
+#include <openssl/crypto.h>
+#if !defined(OPENSSL_clear_free)
+static inline void OPENSSL_clear_free(void *ptr, size_t len) {
+  if (ptr) {
+    OPENSSL_cleanse(ptr, len);
+    OPENSSL_free(ptr);
+  }
+}
+#endif
+
 static int         evp_pkey_name2type(const char *name);
 static const char *evp_pkey_type2name(int type);
 
@@ -1601,7 +1612,85 @@ Derive public key algorithm shared secret
 @tparam[opt] engine eng
 @treturn string
 */
+#ifdef _MSC_VER
 static int openssl_derive(lua_State *L)
+{
+  int ret = 0;
+
+  EVP_PKEY     *pkey = CHECK_OBJECT(1, EVP_PKEY, "openssl.evp_pkey");
+  EVP_PKEY     *peer = CHECK_OBJECT(2, EVP_PKEY, "openssl.evp_pkey");
+  ENGINE       *eng = lua_isnoneornil(L, 3) ? NULL : CHECK_OBJECT(3, ENGINE, "openssl.engine");
+  EVP_PKEY_CTX *ctx;
+  int           ptype = EVP_PKEY_type(EVP_PKEY_id(pkey));
+  int           is_valid = 0;
+#if !defined(OPENSSL_NO_DH) && !defined(OPENSSL_NO_EC)
+  static const char *err_msg = "only support DH, EC, X25519 or X448 private key";
+#elif !defined(OPENSSL_NO_DH)
+  static const char *err_msg = "only support DH, X25519 or X448 private key";
+#elif !defined(OPENSSL_NO_EC)
+  static const char *err_msg = "only support EC, X25519 or X448 private key";
+#else
+  static const char *err_msg = "only support X25519 or X448 private key";
+#endif
+
+  /* “Precompute logic checks in advance to avoid preprocessor errors in macros. */
+#if OPENSSL_VERSION_NUMBER >= 0x30000000L && !defined(LIBRESSL_VERSION_NUMBER)
+  /* OpenSSL 3.0+ way */
+#if !defined(OPENSSL_NO_DH)
+  if (ptype == EVP_PKEY_DH && pkey_is_type(pkey, EVP_PKEY_DH)) is_valid = 1;
+#endif
+#if !defined(OPENSSL_NO_EC)
+  if (ptype == EVP_PKEY_EC && pkey_is_type(pkey, EVP_PKEY_EC)) is_valid = 1;
+#endif
+#else
+  /* OpenSSL 1.x way */
+#if !defined(OPENSSL_NO_DH)
+  if (ptype == EVP_PKEY_DH && EVP_PKEY_get0_DH(pkey) != NULL) is_valid = 1;
+#endif
+#if !defined(OPENSSL_NO_EC)
+  if (ptype == EVP_PKEY_EC && EVP_PKEY_get0_EC_KEY(pkey) != NULL) is_valid = 1;
+#endif
+#endif
+
+  /* Shared Edwards‑curve verification */
+#ifdef EVP_PKEY_X25519
+  if (ptype == EVP_PKEY_X25519) is_valid = 1;
+#endif
+#ifdef EVP_PKEY_X448
+  if (ptype == EVP_PKEY_X448) is_valid = 1;
+#endif
+
+  /* Now the safe call without nested directives */
+  luaL_argcheck(L, is_valid, 1, err_msg);
+  luaL_argcheck(L, ptype == EVP_PKEY_type(EVP_PKEY_id(peer)), 2, "mismatch key type");
+
+  ctx = EVP_PKEY_CTX_new(pkey, eng);
+  if (ctx) {
+    ret = EVP_PKEY_derive_init(ctx);
+    if (ret == 1) {
+      ret = EVP_PKEY_derive_set_peer(ctx, peer);
+      if (ret == 1) {
+        size_t skeylen;
+        ret = EVP_PKEY_derive(ctx, NULL, &skeylen);
+        if (ret == 1) {
+          unsigned char *skey = OPENSSL_malloc(skeylen);
+          if (skey) {
+            ret = EVP_PKEY_derive(ctx, skey, &skeylen);
+            if (ret == 1) {
+              lua_pushlstring(L, (const char *)skey, skeylen);
+            }
+	    OPENSSL_clear_free(skey,skeylen);
+          }
+        }
+      }
+    }
+    EVP_PKEY_CTX_free(ctx);
+  }
+
+  return ret == 1 ? 1 : openssl_pushresult(L, ret);
+}
+#else
+static int openssl_derive(lua_State*L)
 {
   int ret = 0;
 
@@ -1726,6 +1815,7 @@ static int openssl_derive(lua_State *L)
 
   return ret == 1 ? 1 : openssl_pushresult(L, ret);
 }
+#endif
 
 /***
 sign message with private key

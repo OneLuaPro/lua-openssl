@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>lua-openssl Documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>lua-openssl</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="ec.point.html#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="asn1.html">asn1</a></li>
+  <li><a href="bio.html">bio</a></li>
+  <li><a href="callback.html">callback</a></li>
+  <li><a href="cipher.html">cipher</a></li>
+  <li><a href="cms.html">cms</a></li>
+  <li><a href="compat.html">compat</a></li>
+  <li><a href="x509.crl.html">x509.crl</a></li>
+  <li><a href="x509.req.html">x509.req</a></li>
+  <li><a href="dh.html">dh</a></li>
+  <li><a href="digest.html">digest</a></li>
+  <li><a href="dsa.html">dsa</a></li>
+  <li><a href="ec.html">ec</a></li>
+  <li><a href="engine.html">engine</a></li>
+  <li><a href="ec.group.html">ec.group</a></li>
+  <li><a href="hmac.html">hmac</a></li>
+  <li><a href="kdf.html">kdf</a></li>
+  <li><a href="bn.html">bn</a></li>
+  <li><a href="lhash.html">lhash</a></li>
+  <li><a href="mac.html">mac</a></li>
+  <li><a href="misc.html">misc</a></li>
+  <li><a href="ocsp.html">ocsp</a></li>
+  <li><a href="openssl.html">openssl</a></li>
+  <li><a href="ts.html">ts</a></li>
+  <li><a href="param.html">param</a></li>
+  <li><a href="pkcs12.html">pkcs12</a></li>
+  <li><a href="pkcs7.html">pkcs7</a></li>
+  <li><a href="pkey.html">pkey</a></li>
+  <li><strong>ec.point</strong></li>
+  <li><a href="rsa.html">rsa</a></li>
+  <li><a href="srp.html">srp</a></li>
+  <li><a href="ssl.html">ssl</a></li>
+  <li><a href="th-lock.html">th-lock</a></li>
+  <li><a href="util.html">util</a></li>
+  <li><a href="x509.html">x509</a></li>
+  <li><a href="x509.algor.html">x509.algor</a></li>
+  <li><a href="x509.attribute.html">x509.attribute</a></li>
+  <li><a href="x509.extension.html">x509.extension</a></li>
+  <li><a href="x509.name.html">x509.name</a></li>
+  <li><a href="x509.store.html">x509.store</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>ec.point</code></h1>
+<p>EC_POINT module for Lua OpenSSL binding.</p>
+<p>This module provides a complete wrapper for OpenSSL&rsquo;s EC_POINT operations,
+enabling elliptic curve point mathematical operations.</p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">point = require(&apos;openssl&apos;).ec.point
+</pre>
+    </ul>
+
+
+<h2><a href="ec.point.html#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="ec.point.html#new">new (group)</a></td>
+	<td class="summary">Create a new EC point on a given group.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.point.html#copy">copy (dest, src)</a></td>
+	<td class="summary">Copy one EC point to another.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="ec.point.html#tostring">tostring ()</a></td>
+	<td class="summary">Convert EC point to string (internal, called by __tostring).</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new (group)</strong>
+    </dt>
+    <dd>
+    Create a new EC point on a given group.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">group</span>
+            <span class="types"><span class="type">ec_group</span></span>
+         the EC group
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ec_point</span></span>
+        new elliptic curve point (at infinity)
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">group = <span class="global">require</span>(<span class="string">'openssl'</span>).group
+point = <span class="global">require</span>(<span class="string">'openssl'</span>).point
+g = group.<span class="function-name">new</span>(<span class="string">'prime256v1'</span>)
+p = point.<span class="function-name">new</span>(g)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "copy"></a>
+    <strong>copy (dest, src)</strong>
+    </dt>
+    <dd>
+    Copy one EC point to another.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dest</span>
+            <span class="types"><span class="type">ec_point</span></span>
+         destination point
+        </li>
+        <li><span class="parameter">src</span>
+            <span class="types"><span class="type">ec_point</span></span>
+         source point
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ec_point</span></span>
+        destination point (self)
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tostring"></a>
+    <strong>tostring ()</strong>
+    </dt>
+    <dd>
+    Convert EC point to string (internal, called by __tostring).
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        string representation
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2025-11-05 20:38:13 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

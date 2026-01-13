@@ -26,7 +26,20 @@ if(BUILD_SHARED_LUA_OPENSSL)
   set(LUA_OPENSSL_LIBTYPE MODULE)
   if(WIN32)
     add_definitions(-DLUA_BUILD_AS_DLL)
+    if(MSVC)
+      add_compile_definitions(
+	WIN32_LEAN_AND_MEAN
+	_CRT_SECURE_NO_WARNINGS
+	_CRT_NONSTDC_NO_DEPRECATE
+	ssize_t=SSIZE_T
+	OPENSSL_SYS_WIN32
+      )
+      add_compile_options(/Zc:preprocessor /wd5105 /wd4113 /wd4267 /wd4244 /wd4018)
+    endif()
     set(EXTRA_LIBS "ws2_32.lib" "crypt32.lib")
+    if(MSVC)
+      list(APPEND EXTRA_LIBS "bcrypt.lib")
+    endif()
   endif()
 else()
   set(LUA_OPENSSL_LIBTYPE STATIC)
@@ -102,5 +115,8 @@ set_target_properties(lua-openssl PROPERTIES PREFIX "" OUTPUT_NAME "openssl")
 install(
   TARGETS lua-openssl
   LIBRARY
-    DESTINATION
-      ${CMAKE_INSTALL_LIBDIR}/lua/${LUA_VERSION_MAJOR}.${LUA_VERSION_MINOR})
+  DESTINATION
+  ${CMAKE_INSTALL_LIBDIR}/lua/${LUA_VERSION_MAJOR}.${LUA_VERSION_MINOR}
+)
+install(DIRECTORY doc/ DESTINATION ${CMAKE_INSTALL_DOCDIR})	# "/" omits leading dir
+install(DIRECTORY test DESTINATION ${CMAKE_INSTALL_DOCDIR})	# "/" omits leading dir
