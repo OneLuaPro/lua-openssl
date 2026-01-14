@@ -118,5 +118,3 @@ install(
   DESTINATION
   ${CMAKE_INSTALL_LIBDIR}/lua/${LUA_VERSION_MAJOR}.${LUA_VERSION_MINOR}
 )
-install(DIRECTORY doc/ DESTINATION ${CMAKE_INSTALL_DOCDIR})	# "/" omits leading dir
-install(DIRECTORY test DESTINATION ${CMAKE_INSTALL_DOCDIR})	# "/" omits leading dir
