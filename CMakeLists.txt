@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.31)
 project(lua-openssl C)
 
 set(CMAKE_MACOSX_RPATH 1)
@@ -14,7 +14,16 @@ include(GNUInstallDirs)
 
 find_package(LuaJIT)
 if(NOT LUAJIT_FOUND)
-  find_package(Lua REQUIRED)
+  # find_package(Lua REQUIRED)
+  find_package(liblua REQUIRED CONFIG HINTS ${LUA_HINTS})
+  if(liblua_FOUND)
+    message(STATUS "liblua version        : ${liblua_VERSION}")
+    message(STATUS "liblua install prefix : ${LIBLUA_INSTALLDIR}")
+    message(STATUS "liblua include dir    : ${LIBLUA_INCLUDEDIR}")
+    message(STATUS "liblua lib dir        : ${LIBLUA_LIBDIR}")
+  else()
+    message(FATAL_ERROR "Unable to find liblua version ${liblua_VERSION}.")
+  endif()
 endif()
 find_package(OpenSSL REQUIRED)
 
