@@ -14,15 +14,18 @@ include(GNUInstallDirs)
 
 find_package(LuaJIT)
 if(NOT LUAJIT_FOUND)
-  # find_package(Lua REQUIRED)
-  find_package(liblua REQUIRED CONFIG HINTS ${LUA_HINTS})
+  # try to find OneLuaPro Lua libs and headers first. cmake v3.31 does not
+  # know about Lua 5.5 unfortunately
+  find_package(liblua CONFIG HINTS ${LUA_HINTS})
   if(liblua_FOUND)
     message(STATUS "liblua version        : ${liblua_VERSION}")
     message(STATUS "liblua install prefix : ${LIBLUA_INSTALLDIR}")
     message(STATUS "liblua include dir    : ${LIBLUA_INCLUDEDIR}")
     message(STATUS "liblua lib dir        : ${LIBLUA_LIBDIR}")
+    set(LUA_LIBRARIES ${LIBLUA_LIBDIR}/liblua.lib)
   else()
-    message(FATAL_ERROR "Unable to find liblua version ${liblua_VERSION}.")
+    # fallback
+    find_package(Lua REQUIRED)
   endif()
 endif()
 find_package(OpenSSL REQUIRED)
