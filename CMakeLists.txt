@@ -23,6 +23,8 @@ if(NOT LUAJIT_FOUND)
     message(STATUS "liblua include dir    : ${LIBLUA_INCLUDEDIR}")
     message(STATUS "liblua lib dir        : ${LIBLUA_LIBDIR}")
     set(LUA_LIBRARIES ${LIBLUA_LIBDIR}/liblua.lib)
+    set(LUA_VERSION_MAJOR ${liblua_VERSION_MAJOR})
+    set(LUA_VERSION_MINOR ${liblua_VERSION_MINOR})
   else()
     # fallback
     find_package(Lua REQUIRED)
