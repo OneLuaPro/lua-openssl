@@ -17,6 +17,10 @@ Openssl binding for Lua, provide openssl full function in lua.
 #include <openssl/cms.h>
 #endif
 
+#ifdef _WIN32
+#include <winsock2.h>
+#endif
+
 /***
 get lua-openssl version
 @function version
@@ -571,6 +575,17 @@ lua_State *openssl_mainthread(lua_State *L)
 LUALIB_API int
 luaopen_openssl(lua_State *L)
 {
+#ifdef _WIN32
+  /* Initialize Winsock 2.2 for LibreSSL/OpenSSL on Windows */
+  WSADATA wsaData;
+  if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+    /* If initialization fails, print a warning but do not abort,
+       as non-network modules might still be usable. */
+    fprintf(stderr,"Warning: openssl module failed to initialize Winsock (WSAError: %d)\n",
+	    (int)WSAGetLastError());
+  }
+#endif
+
   openssl_initialize();
 
   lua_newtable(L);

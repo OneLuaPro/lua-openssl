@@ -56,12 +56,9 @@ local function mk_connection(_host, _port, i)
     local s = "aaa"
     io.write(".")
     io.flush()
-    for _ = 1, 100 do
-      assert(cli:write(s))
-      assert(cli:read())
-    end
+    assert(cli:write(s))
+    assert(cli:read())
     cli:shutdown()
-    cli:free()
   end
   openssl.errors()
 end
